@@ -12,14 +12,12 @@ const server = express()
 
 const io = socketIO(server);
 
-io.emit('hi', "hi man");
-
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
 io.on('send_message', (data) => {
-  setInterval(() => io.emit('time', data, 1000));
+  io.emit('time', data);
 });
 
