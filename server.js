@@ -12,6 +12,8 @@ const server = express()
 
 const io = socketIO(server);
 
+io.broadcast.emit('hi', "hi man");
+
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
