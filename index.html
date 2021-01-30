@@ -21,9 +21,9 @@
       let socket = io();
       let el;
 
-      socket.on('time', (timeString) => {
+      socket.on('broadcast', (msg) => {
         el = document.getElementById('server-time');
-        el.innerHTML = timeString;
+        el.innerHTML = msg;
       });
     </script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -49,7 +49,7 @@
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li> 
-						<li><a href="about.html">About Us</a></li>
+						<li><a id = server-time>About Us</a></li>
 						<li><a href="services.html">Services</a></li>
                         <li><a href="portfolio.html">Portfolio</a></li>
                         <li class="active"><a href="pricing.html">Pricing</a></li>
@@ -105,7 +105,6 @@
 						</div>
 						</div>
 					<canvas id="canvas"></canvas>
-					<p id="server-time"></p>
 					<div>
 						<button type="button" class="btn btn-primary">
 							Game Level <span class="badge badge-light" id="gamelevel"></span>

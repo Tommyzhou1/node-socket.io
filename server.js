@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const socketIO = require('socket.io');
 
@@ -12,7 +10,18 @@ const server = express()
 
 const io = socketIO(server);
 
-io.on('send_message', (data) => {
-  io.emit('time', "hi broo");
+var temp;
+
+io.on('connection', function(client){
+  client.emit("welcome","hi"); //This is received by everyone
+  client.on("message", function(data){
+    temp = data;
+    client.broadcast.emit("broadcast",data);
+  });
 });
+
+
+
+
+
 
