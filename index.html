@@ -33,16 +33,6 @@
 
 </head>
 
-	<script>
-
-		var socket = io.connect('https://test2-web.herokuapp.com/:3000');
-		var el;
-
-		socket.on('time', function(timeString) {
-			el = document.getElementById('server-time')
-			el.innerHTML = 'Server time: ' + timeString;
-		});
-	</script>
 <body>
 <div id="wrapper">
 		<header>
