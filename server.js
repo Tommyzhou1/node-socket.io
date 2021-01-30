@@ -3,7 +3,7 @@
 const express = require('express');
 const socketIO = require('socket.io');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ||  3000;
 const INDEX = '/index.html';
 
 const server = express()
@@ -12,7 +12,7 @@ const server = express()
 
 const io = socketIO(server);
 
-io.broadcast.emit('hi', "hi man");
+io.emit('hi', "hi man");
 
 io.on('connection', (socket) => {
   console.log('Client connected');
@@ -20,6 +20,6 @@ io.on('connection', (socket) => {
 });
 
 io.on('send_message', (data) => {
-  setInterval(() => io.broadcast.emit('time', data, 1000));
+  setInterval(() => io.emit('time', data, 1000));
 });
 
