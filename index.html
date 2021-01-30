@@ -18,13 +18,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
     <script>
-      let socket = io();
-      let el;
-
-      socket.on('broadcast', (msg) => {
-        el = document.getElementById('server-time');
-        el.innerHTML = msg;
-      });
+      
     </script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -49,7 +43,7 @@
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li> 
-						<li><a id = server-time>About Us</a></li>
+						<li><a id =server-time>About Us</a></li>
 						<li><a href="services.html">Services</a></li>
                         <li><a href="portfolio.html">Portfolio</a></li>
                         <li class="active"><a href="pricing.html">Pricing</a></li>
@@ -203,6 +197,27 @@ function nextlevel(){
 }
 
 InitializeBlock();
+let socket = io();
+let el;
+
+socket.on('broadcast', (msg) => {
+  el = document.getElementById('server-time');
+  el.innerHTML = msg;
+  if(msg == "left"){
+    isLeft = true;
+    isRight = false;
+  }
+  else if(msg == "right"){
+    isLeft = false;
+    isRight = true;
+  }
+  else{
+    isLeft = false;
+    isRight = false;
+  }
+
+});
+
 window.addEventListener('keydown',(e)=>{
     if(e.key = "a"){
         isLeft=true;
